@@ -67,7 +67,8 @@
               "buildTarget": "angular-healthcare:build:production"
             },
             "development": {
-              "buildTarget": "angular-healthcare:build:development"
+              "buildTarget": "angular-healthcare:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

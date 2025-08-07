@@ -7,17 +7,17 @@ export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
   @Get()
-  listProducts(): ProductDto[] {
+  listProducts() {
     return this.productService.findAll();
   }
 
   @Post()
-  createProduct(@Body() body: ProductDto): ProductDto {
-    return {} as ProductDto; // Placeholder for product creation logic
+  createProduct(@Body() body: ProductDto) {
+    return this.productService.saveOrUpdate(body)
   }
 
   @Get('/:id')
-  getProduct(@Param('id') id: string): ProductDto {
-    return {} as ProductDto; // Placeholder for fetching a single product
+  getProduct(@Param('id') id: string) {
+    return this.productService.findById(id);
   }
 }

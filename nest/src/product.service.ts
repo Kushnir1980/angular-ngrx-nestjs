@@ -7,20 +7,20 @@ export class ProductService {
 
   constructor(private readonly firebaseRepository: FirebaseRepository) { }
 
-  findAll(): ProductDto[] {
-    //return this.firebaseRepository.findAll();
-    return [];
+  findAll() {
+    return this.firebaseRepository.findAll();
   }
 
-  findById(id: string): ProductDto {
-    return {} as ProductDto; // Placeholder for fetching a single product
+  findById(id: string) {
+    return this.firebaseRepository.findById(id);
   }
 
-  saveOrUpdate(product: ProductDto): ProductDto {
+  saveOrUpdate(product: ProductDto) {
     if (!product.id) {
       const id = crypto.randomUUID();
       const newProduct = { ...product, id };
+      return this.firebaseRepository.create(id, newProduct);
     }
-    return {} as ProductDto; // Placeholder for fetching a single product
+    return this.firebaseRepository.update2(product.id, product);
   }
 }

@@ -1,6 +1,7 @@
-import { IsNumber, IsString } from 'class-validator'
+import { IsNumber, IsString, IsOptional } from 'class-validator'
 
 export class ProductDto {
+    @IsOptional()
     id: string | null;
 
     @IsString()
@@ -8,5 +9,8 @@ export class ProductDto {
 
     @IsNumber()
     price: number;
+
+    @IsOptional()
+    @IsString()
     description?: string;
 }

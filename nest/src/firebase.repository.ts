@@ -12,7 +12,11 @@ export class FirebaseRepository {
     }
 
     async findAll() {
-        return await this.firestore.collection('products').get();
+        const snapshot = await this.firestore.collection('products').get();
+        return snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        } as ProductDto));
     }
 
     async findById(id: string) {
@@ -21,6 +25,10 @@ export class FirebaseRepository {
     }
 
     async create(id: string, product: ProductDto) {
+        return this.firestore.collection('products').doc(id).set(product);
+    }
+
+    async update2(id: string, product: ProductDto) {
         return this.firestore.collection('products').doc(id).set(product);
     }
 
