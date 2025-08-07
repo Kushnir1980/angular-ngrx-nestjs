@@ -17,19 +17,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.httpResource.get('/api/products').subscribe(data => {
-      console.log('Products:', data);
-    })
+    this.httpResource.get('/api/products').subscribe()
 
-    console.log('Creating product...');
     const newProduct = {
-      id: null,
       price: 100,
       name: 'first product',
       description: 'first product description',
     };
 
-    //this.httpResource.post('/api/products', newProduct).subscribe()
+    this.httpResource.post('/api/products', newProduct).subscribe()
 
   }
 

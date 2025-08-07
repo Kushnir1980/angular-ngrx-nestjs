@@ -28,8 +28,12 @@ export class FirebaseRepository {
         return this.firestore.collection('products').doc(id).set(product);
     }
 
-    async update2(id: string, product: ProductDto) {
-        return this.firestore.collection('products').doc(id).set(product);
+    async update(id: string, product: ProductDto) {
+        return this.firestore.collection('products').doc(id).update({ data: product });
+    }
+
+    async remove(id: string) {
+        return this.firestore.collection('products').doc(id).delete();
     }
 
 }

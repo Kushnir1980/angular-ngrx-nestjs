@@ -2,7 +2,7 @@ import { IsNumber, IsString, IsOptional } from 'class-validator'
 
 export class ProductDto {
     @IsOptional()
-    id: string | null;
+    id: string | number | null;
 
     @IsString()
     name: string;
