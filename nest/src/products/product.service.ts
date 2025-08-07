@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProductDto } from './product.dto';
-import { FirebaseRepository } from './firebase.repository';
+import { FirebaseRepository } from './product-firebase.repository';
 
 @Injectable()
 export class ProductService {

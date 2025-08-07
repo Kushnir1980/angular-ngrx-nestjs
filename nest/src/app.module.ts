@@ -1,13 +1,17 @@
 import { Global, Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import * as admin from 'firebase-admin';
-import { ProductController } from './product.controller';
-import { ProductService } from './product.service';
-import { FirebaseRepository } from './firebase.repository';
+import { ProductModule } from './products/product.module';
+import { Product } from './products/product.entity';
 
 @Global()
 @Module({
-  imports: [],
-  controllers: [ProductController],
+  imports: [TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: 'db.sqlite',
+    entities: [Product],
+    synchronize: true
+  }), ProductModule],
   providers: [{
     provide: 'FIREBASE_APP',
     useFactory: () => {
@@ -16,7 +20,7 @@ import { FirebaseRepository } from './firebase.repository';
         databaseURL: 'https://nest-c0fb1.firebaseio.com', // for Realtime DB
       });
     },
-  }, ProductService, FirebaseRepository],
+  }],
   exports: ['FIREBASE_APP']
 })
 export class AppModule { }
