@@ -17,15 +17,23 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.httpResource.get('/api/products').subscribe()
+    this.httpResource.get('/api/products').subscribe();
+
+    const random = Math.round(Math.random() * 1000).toString();
 
     const newProduct = {
-      price: 100,
-      name: 'first product',
-      description: 'first product description',
+      price: Math.random() * 1000,
+      name: `New product ${random}`,
+      description: 'Product description',
     };
 
-    this.httpResource.post('/api/products', newProduct).subscribe()
+    const newUser = {
+      email: `my${random}@email.com`,
+      password: `password_${random}`,
+    };
+
+    this.httpResource.post('/api/products', newProduct).subscribe();
+    this.httpResource.post('/api/auth/signup', newUser).subscribe()
 
   }
 
