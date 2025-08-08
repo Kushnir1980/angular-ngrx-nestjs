@@ -17,7 +17,7 @@ import { UsersModule } from './users/users.module';
     provide: 'FIREBASE_APP',
     useFactory: () => {
       return admin.initializeApp({
-        credential: admin.credential.cert(require('../firebase.json')),
+        credential: admin.credential.cert(require('../../firebase.json')),
         databaseURL: 'https://nest-c0fb1.firebaseio.com', // for Realtime DB
       });
     },
