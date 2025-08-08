@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ProductDto } from './product.dto';
 import { FirebaseRepository } from './product-firebase.repository';
 import { SqLiteRepository } from './product-sql-orm.repository';
-
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class ProductService {
@@ -22,11 +22,13 @@ export class ProductService {
 
   saveOrUpdate(product: ProductDto) {
     if (!product.id) {
-      const id = crypto.randomUUID();
+      const id = randomUUID();
       const newProduct = { ...product, id };
 
-      this.sqLiteRepository.create(id, newProduct); // Save to SqLite
-      return this.firebaseRepository.create(id, newProduct); // Save to Firebase
+      // Save to SqLite
+      this.sqLiteRepository.create(id, newProduct);
+      // Save to Firebase
+      return this.firebaseRepository.create(id, newProduct);
     }
     return this.firebaseRepository.update(product.id as string, product);
   }

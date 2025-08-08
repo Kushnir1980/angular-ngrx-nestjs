@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './product.dto';
 
@@ -20,4 +20,10 @@ export class ProductController {
   getProduct(@Param('id') id: string) {
     return this.productService.findById(id);
   }
+
+  @Delete('/:id')
+  deleteProduct(@Param('id') id: string) {
+    return this.productService.remove(id);
+  }
+
 }

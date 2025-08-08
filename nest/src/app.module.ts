@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as admin from 'firebase-admin';
 import { ProductModule } from './products/product.module';
 import { Product } from './products/product.entity';
+import { UsersModule } from './users/users.module';
 
 @Global()
 @Module({
@@ -11,7 +12,7 @@ import { Product } from './products/product.entity';
     database: 'db.sqlite',
     entities: [Product],
     synchronize: true
-  }), ProductModule],
+  }), ProductModule, UsersModule],
   providers: [{
     provide: 'FIREBASE_APP',
     useFactory: () => {
