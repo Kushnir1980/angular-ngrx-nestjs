@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
 
   onSignup() {
     const newUser = {
-      email: `test@email.com`,
+      email: `test2@email.com`,
       password: `12345`,
     };
     this.httpResource.post('/api/auth/signup', newUser).subscribe(() => {
